@@ -9,14 +9,13 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain.chains import create_retrieval_chain
 from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders import PyPDFDirectoryLoader
+import openai
 
 from dotenv import load_dotenv
 load_dotenv()
-## load the GROQ API Key
-os.environ['OPENAI_API_KEY']=os.getenv("OPENAI_API_KEY")
-os.environ['GROQ_API_KEY']=os.getenv("GROQ_API_KEY")
 
-groq_api_key=os.getenv("GROQ_API_KEY")
+groq_api_key=st.secrets["GROQ_API_KEY"]
+openai.api_key=st.secrets["OPENAI_API_KEY"]
 
 llm=ChatGroq(groq_api_key=groq_api_key,model_name="Llama3-8b-8192")
 
